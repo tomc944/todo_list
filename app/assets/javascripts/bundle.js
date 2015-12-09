@@ -59,7 +59,8 @@
 
 	var React = __webpack_require__(2),
 	    TodoStore = __webpack_require__(160),
-	    TodoListItem = __webpack_require__(161);
+	    TodoListItem = __webpack_require__(161),
+	    TodoForm = __webpack_require__(162);
 	
 	var TodoList = React.createClass({
 	  displayName: 'TodoList',
@@ -91,7 +92,8 @@
 	      ),
 	      todos.map(function (todo, idx) {
 	        return React.createElement(TodoListItem, { key: idx, item: todo });
-	      })
+	      }),
+	      React.createElement(TodoForm, null)
 	    );
 	  }
 	});
@@ -19823,6 +19825,74 @@
 	});
 	
 	module.exports = TodoListItem;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(2),
+	    TodoStore = __webpack_require__(160);
+	
+	var TodoForm = React.createClass({
+	  displayName: "TodoForm",
+	
+	  getInitialState: function () {
+	    return {
+	      title: "",
+	      body: ""
+	    };
+	  },
+	  updateTitle: function (e) {
+	    this.setState({ title: e.target.value });
+	  },
+	  updateBody: function (e) {
+	    this.setState({ body: e.target.value });
+	  },
+	  handleSubmit: function (e) {
+	    e.preventDefault();
+	
+	    var newTodo = {
+	      title: this.state.title,
+	      body: this.state.body,
+	      done: false
+	    };
+	
+	    TodoStore.create(newTodo);
+	
+	    this.setState({
+	      title: "",
+	      body: ""
+	    });
+	  },
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      null,
+	      React.createElement(
+	        "h2",
+	        null,
+	        "Create a new todo!"
+	      ),
+	      React.createElement(
+	        "form",
+	        { onSubmit: this.handleSubmit },
+	        "Title: ",
+	        React.createElement("input", { type: "text",
+	          onChange: this.updateTitle
+	        }),
+	        React.createElement("br", null),
+	        "Body: ",
+	        React.createElement("input", { type: "text",
+	          onChange: this.updateBody
+	        }),
+	        React.createElement("br", null),
+	        React.createElement("input", { type: "submit", value: "New TODO" })
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = TodoForm;
 
 /***/ }
 /******/ ]);
