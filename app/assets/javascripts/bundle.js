@@ -19797,6 +19797,9 @@
 	var TodoListItem = React.createClass({
 	  displayName: 'TodoListItem',
 	
+	  handleDestroy: function (e) {
+	    TodoStore.destroy(parseInt(e.target.id));
+	  },
 	  render: function () {
 	    var id = this.props.item.id;
 	    var todo = TodoStore.find(id);
@@ -19819,7 +19822,11 @@
 	        null,
 	        'Body: ',
 	        todo.body
-	      )
+	      ),
+	      React.createElement('input', { type: 'button',
+	        onClick: this.handleDestroy,
+	        value: 'Delete',
+	        id: id })
 	    );
 	  }
 	});
