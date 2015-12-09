@@ -19878,13 +19878,13 @@
 	        { onSubmit: this.handleSubmit },
 	        "Title: ",
 	        React.createElement("input", { type: "text",
-	          onChange: this.updateTitle
-	        }),
+	          onChange: this.updateTitle,
+	          value: this.state.title }),
 	        React.createElement("br", null),
 	        "Body: ",
 	        React.createElement("input", { type: "text",
-	          onChange: this.updateBody
-	        }),
+	          onChange: this.updateBody,
+	          value: this.state.body }),
 	        React.createElement("br", null),
 	        React.createElement("input", { type: "submit", value: "New TODO" })
 	      )
